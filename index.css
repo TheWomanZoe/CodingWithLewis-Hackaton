@@ -1,0 +1,43 @@
+body {
+    background-color: #e15400;
+}
+
+#title-text {
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
+    background-color: #e18c00;
+    border-radius: 20px;
+    max-width: fit-content;
+    max-height: fit-content;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#description {
+    margin: 0 30px 30px;
+}
+
+#title-text h1 {
+    font-weight: 900;
+    font-size: 120px;
+    text-align: center;
+    color: white;
+    margin: 20px 0;
+}
+
+#title-text h2 {
+    font-weight: 700;
+    color: white;
+    font-size: 80px;
+    margin: 10px 10px 0;
+
+}
+
+#first, #third {
+    text-align: right;
+}
+
+#second {
+    text-align: left;
+}
