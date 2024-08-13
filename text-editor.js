@@ -1,4 +1,5 @@
 const textarea = document.getElementById("textarea");
+const downloadButton  = document.getElementById("download-button");
 let loadingWait;
 
 const loading = () => {
@@ -55,3 +56,26 @@ textarea.addEventListener("input", e => {
     }, 500)
 })
 
+downloadButton.addEventListener("click", e => {
+    const languages = document.querySelectorAll("input[name = language]");
+    let selected = false;
+    let language;
+
+    languages.forEach(option => {
+        if (option.checked){
+            selected = true;
+            language = option.value;
+        }
+    })
+
+    if (!selected){
+        alert("Please select a language");
+        return;
+    }
+
+
+
+    languages.forEach(option => {
+        option.checked = false;
+    })
+})

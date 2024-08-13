@@ -36,7 +36,7 @@ body {
     width: 30%;
 }
 
-#download-file button {
+#download-button {
     font-family: "JetBrains Mono", sans-serif;
     font-weight: bold;
     font-size: 30px;
@@ -47,6 +47,11 @@ body {
     width: fit-content;
     padding: 15px 10px;
     margin: 0 25% 0 25%;
+}
+
+#download-button:hover {
+    background-color: white;
+    color: #e18c00;
 }
 
 #download-file h2 {
@@ -67,3 +72,32 @@ body {
     animation: l2 1s infinite linear;
 }
 @keyframes l2 {to{transform: rotate(1turn)}}
+
+#download-path {
+    margin: 60px auto;
+    font-family: "JetBrains Mono", sans-serif;
+    color: white;
+    background-color: #ffba50;
+    width: fit-content;
+    border: 3px solid #e18c00;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#download-path form {
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 20px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.column div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
