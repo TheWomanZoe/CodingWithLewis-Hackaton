@@ -1,4 +1,33 @@
 const textarea = document.getElementById("textarea");
+let loadingWait;
+
+const loading = () => {
+    const savedText = document.getElementById("saved");
+    const downloadButton = document.getElementById("download-button");
+
+    const savingText = document.getElementById("saving");
+    const loader = document.getElementById("loader");
+
+    savedText.classList.toggle("hidden");
+    downloadButton.classList.toggle("hidden");
+    savingText.classList.toggle("hidden");
+    loader.classList.toggle("hidden");
+
+    setTimeout(() => {
+        savedText.classList.toggle("hidden");
+        downloadButton.classList.toggle("hidden");
+        savingText.classList.toggle("hidden");
+        loader.classList.toggle("hidden");
+    }, (Math.random() * (3 - 1) + 1) * 1000)
+}
+
+window.onload = () => {
+    const savedText = localStorage.getItem("savedText");
+
+    if (savedText) {
+        textarea.value = savedText;
+    }
+}
 
 textarea.addEventListener("input", e => {
     const start = textarea.selectionStart;
@@ -16,7 +45,13 @@ textarea.addEventListener("input", e => {
 
         textarea.setSelectionRange(lineStart + 1, lineStart);
     }
-    else if (e.inputType === "deleteText") {
-        textarea.setSelectionRange(start, start);
-    }
+
+    localStorage.setItem("savedText", textarea.value);
+
+    clearTimeout(loadingWait);
+
+    loadingWait = setTimeout(() => {
+        loading();
+    }, 500)
 })
+
