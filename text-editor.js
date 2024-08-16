@@ -2,6 +2,7 @@ const textarea = document.getElementById("textarea");
 const downloadButton  = document.getElementById("download-button");
 let loadingWait;
 
+// A little wait never hurt anyone 😊
 const loading = () => {
     const savedText = document.getElementById("saved");
     const downloadButton = document.getElementById("download-button");
@@ -19,7 +20,7 @@ const loading = () => {
         downloadButton.classList.toggle("hidden");
         savingText.classList.toggle("hidden");
         loader.classList.toggle("hidden");
-    }, (Math.random() * (3 - 1) + 1) * 1000)
+    }, (Math.random() * (3 - 1) + 1) * 1000) // Should have made a 1/100 000 chance to get an infinite loading screen
 }
 
 window.onload = () => {
@@ -47,6 +48,8 @@ textarea.addEventListener("input", e => {
         textarea.setSelectionRange(lineStart + 1, lineStart);
     }
 
+    // Can't get it to delete backwards as well, so I'm leaving it as is
+
     localStorage.setItem("savedText", textarea.value);
 
     clearTimeout(loadingWait);
@@ -73,9 +76,42 @@ downloadButton.addEventListener("click", e => {
         return;
     }
 
+    let fileExtension
+
+    switch (language){
+        case 'javascript':
+            fileExtension = "js";
+            break;
+        case 'typescript':
+            fileExtension = "ts"; // Why does it save as a video file lol
+            break;
+        case 'python':
+            fileExtension = "py";
+            break;
+        case 'java':
+            fileExtension = "java";
+            break;
+        case 'c':
+            fileExtension = "c";
+            break;
+        case 'c++':
+            fileExtension = "cpp";
+            break;
+    }
+
+    const filename = `code.${fileExtension}`;
+
+    const element =  document.createElement('a');
+    element.href = URL.createObjectURL(new Blob([textarea.value], { type: `text/plain` }));
+    element.download = filename;
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
 
 
     languages.forEach(option => {
         option.checked = false;
     })
 })
+
+// FINALLY DONE OMG
